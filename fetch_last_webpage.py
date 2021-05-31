@@ -1,4 +1,5 @@
 from db import mydb
+import json
 
 def fetch_last_webpage():
   con = mydb.cursor()
@@ -10,7 +11,12 @@ def fetch_last_webpage():
     for r in res:
         result_string = result_string + r
 
-  return result_string
+  return json.loads(result_string)
+
+
+def save_new_version(string1):
+    
+
 
 # for testing purposes
 if __name__ == "__main__":
