@@ -1,0 +1,6 @@
+/*CREATE IF NOT EXISTS SCHEMA WatchBot*/
+USE nnozdtse59oo33v6
+
+CREATE TABLE HTMLFile(
+    WebsiteText MEDIUMTEXT NOT NULL
+);
