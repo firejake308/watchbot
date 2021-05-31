@@ -1,5 +1,6 @@
 import discord
 import os
+import asyncio
 
 if __name__ == '__main__':
     client = discord.Client()
@@ -10,7 +11,20 @@ if __name__ == '__main__':
         # TODO
         for guild in client.guilds:
             for channel in guild.channels:
-                if channel.name == 'admin-chat':
-                    channel.
+                if channel.name == 'bot-configuration':
+                    print(channel.last_message)
+                    await channel.send('hello world')
+        await client.close()
+        print('closing bot')
 
-    client.run(os.environ.get('BOT_TOKEN'))
+    try:
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(client.start(os.environ.get('BOT_TOKEN')))
+    except KeyboardInterrupt:
+        print('Detected KeyboardInterrupt, canceling remaining tasks')
+        loop.run_until_complete(client.close())
+        # cancel all tasks lingering
+    except discord.errors.Forbidden:
+        loop.run_until_complete(client.close())
+    finally:
+        loop.close()
