@@ -1,0 +1,3 @@
+CREATE TABLE HTMLFile(
+    WebsiteText MEDIUMTEXT NOT NULL
+);
