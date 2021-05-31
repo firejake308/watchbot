@@ -6,3 +6,5 @@ mydb = mysql.connector.connect(
   password="esm8tccchin0febq",
   database='nnozdtse59oo33v6'
 )
+
+
