@@ -2,6 +2,8 @@ import discord
 import os
 import asyncio
 
+# 'https://www.bcm.edu/education/school-of-medicine/m-d-program/current-students/student-affairs/class-of-2025'
+
 if __name__ == '__main__':
     client = discord.Client()
 

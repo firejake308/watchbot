@@ -1,3 +1,4 @@
 CREATE TABLE HTMLFile(
-    WebsiteText MEDIUMTEXT NOT NULL
+    WebsiteText MEDIUMTEXT NOT NULL,
+    ID int NOT NULL
 );

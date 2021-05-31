@@ -4,11 +4,12 @@
 import requests
 from bs4 import BeautifulSoup
 
-def fetch_current_webpage():
-    r = requests.get('https://www.bcm.edu/education/school-of-medicine/m-d-program/current-students/student-affairs/class-of-2025')
-    soup = BeautifulSoup(r.text, features='lxml')
+def fetch_current_webpage(webpage):
+     soup = BeautifulSoup(r.text, features='lxml')
     res = soup.find('div', {"class": "leadsection"})
     return res
+
+
 
 
 # for testing purposes
