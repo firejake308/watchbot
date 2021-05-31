@@ -3,7 +3,7 @@ import json
 
 def fetch_last_webpage():
   con = mydb.cursor()
-  res = con.execute("SELECT * FROM HTMLFile")
+  res = con.execute("SELECT WebsiteText FROM HTMLFile")
   result_string = ""
 
   # There should only be one. This is kinda hacky but oh well

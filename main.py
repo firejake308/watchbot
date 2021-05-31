@@ -14,7 +14,7 @@ if __name__ == '__main__':
         for guild in client.guilds:
             for channel in guild.channels:
                 if channel.name == 'bot-configuration':
-                    print(channel.last_message)
+                    
                     await channel.send('hello world')
         await client.close()
         print('closing bot')
