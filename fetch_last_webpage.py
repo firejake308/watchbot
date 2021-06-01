@@ -3,7 +3,7 @@ import json
 
 def fetch_last_webpage():
   cursor = mydb.cursor(buffered=True)
-  res = cursor.execute("SELECT WebsiteText FROM HTMLFile")
+  cursor.execute("SELECT WebsiteText FROM HTMLFile")
   rows = cursor.fetchall()
   result_string = ""
 
@@ -23,7 +23,8 @@ def fetch_last_webpage():
 def save_new_version(json_formatted):
     con = mydb.cursor()
     json_string = json.dumps(json_formatted)
-    res = con.execute("UPDATE HTMLFile SET WebsiteText=%s WHERE ID=1" % (json_string))
+    con.execute("UPDATE HTMLFile SET WebsiteText='%s' WHERE ID=1",  (json_string))
+    mydb.commit()
     con.close()
 
 

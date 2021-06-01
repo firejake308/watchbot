@@ -1,4 +1,4 @@
-from fetch_last_webpage import fetch_last_webpage, mydb
+from fetch_last_webpage import fetch_last_webpage, mydb, save_new_version
 from fetch_current_webpage import fetch_current_webpage
 import discord
 import os
@@ -17,6 +17,7 @@ if __name__ == '__main__':
             for channel in guild.channels:
                 if channel.name == 'bot-configuration':
                     curr = fetch_current_webpage(URL_TO_FETCH)
+                    save_new_version(curr)
                     prev = fetch_last_webpage()
                     print(len(curr), len(prev))
                     # await channel.send('hello world')
