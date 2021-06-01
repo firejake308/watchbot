@@ -10,7 +10,7 @@ URL_TO_FETCH = 'https://www.bcm.edu/education/school-of-medicine/m-d-program/cur
 
 def run_bot():
     curr = fetch_current_webpage(URL_TO_FETCH)
-    prev = []#fetch_last_webpage()
+    prev = fetch_last_webpage()
     web_comparison = compare_webpages(curr,prev)
     output = None
     if web_comparison:
@@ -30,7 +30,6 @@ if __name__ == '__main__':
         for guild in client.guilds:
             for channel in guild.channels:
                 if channel.name == 'bot-configuration':
-
                     output = run_bot()
                     if output:
                         await channel.send(output)
