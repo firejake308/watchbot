@@ -17,9 +17,15 @@ def fetch_current_webpage(webpage):
     soup = BeautifulSoup(r.text, features='lxml')
     content = soup.find('div', {"class": "leadsection"})
     lis = content.find_all('li')
-    return [str(li) for li in lis]
+    items = []
+    for li in lis:
+        content  = li.text
+        links = li.find('a')
+        href = ': ' + links['href'] if links else ''
+        items.append(content + href)
+    return items
 
 
 # for testing purposes
 if __name__ == "__main__":
-    print(fetch_current_webpage())
+    print(fetch_current_webpage('http://www.bcm.edu/education/school-of-medicine/m-d-program/current-students/student-affairs/class-of-2025'))

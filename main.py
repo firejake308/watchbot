@@ -24,13 +24,13 @@ if __name__ == '__main__':
     @client.event
     async def on_ready():
         print('We have logged in as {0.user}'.format(client))
-        # TODO
         for guild in client.guilds:
             for channel in guild.channels:
                 if channel.name == 'website-changes':
                     output = run_bot()
                     if output:
-                        await channel.send(output)
+                        print(output)
+                        # await channel.send(output)
                     else:
                         print('No changes')
         await client.close()
@@ -43,7 +43,8 @@ if __name__ == '__main__':
         print('Detected KeyboardInterrupt, canceling remaining tasks')
         loop.run_until_complete(client.close())
         # cancel all tasks lingering
-    except Exception:
+    except Exception as e:
+        print(e)
         loop.run_until_complete(client.close())
     finally:
         loop.close()
