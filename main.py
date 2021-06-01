@@ -12,7 +12,7 @@ URL_TO_FETCH = 'http://www.bcm.edu/education/school-of-medicine/m-d-program/curr
 def run_bot():
     curr = fetch_current_webpage(URL_TO_FETCH)
     prev = fetch_last_webpage()
-    web_comparison = compare_webpages(curr,prev)
+    web_comparison = compare_webpages(prev,curr)
     output = None
     if web_comparison:
         output = generate_message(web_comparison,"BCM 2025")
@@ -21,7 +21,6 @@ def run_bot():
 
 if __name__ == '__main__':
     client = discord.Client()
-
     @client.event
     async def on_ready():
         print('We have logged in as {0.user}'.format(client))
