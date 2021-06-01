@@ -29,7 +29,7 @@ if __name__ == '__main__':
         # TODO
         for guild in client.guilds:
             for channel in guild.channels:
-                if channel.name == 'bot-configuration':
+                if channel.name == 'website-changes':
                     output = run_bot()
                     if output:
                         await channel.send(output)
