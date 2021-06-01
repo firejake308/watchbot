@@ -4,7 +4,7 @@ import discord
 import os
 import asyncio
 
-URL_TO_FETCH = 'https://www.bcm.edu/education/school-of-medicine/m-d-program/current-students/student-affairs/class-of-2025'
+URL_TO_FETCH = 'http://www.bcm.edu/education/school-of-medicine/m-d-program/current-students/student-affairs/class-of-2025'
 
 if __name__ == '__main__':
     client = discord.Client()
