@@ -12,10 +12,12 @@ def run_bot():
     curr = fetch_current_webpage(URL_TO_FETCH)
     prev = []#fetch_last_webpage()
     web_comparison = compare_webpages(curr,prev)
+    output = None
     if web_comparison:
-        print(generate_message(web_comparison,"BCM 2025"))
+        output = generate_message(web_comparison,"BCM 2025")
     save_new_version(curr)
     mydb.close()
+    return output
 
 if __name__ == '__main__':
     run_bot()
@@ -28,8 +30,10 @@ if __name__ == '__main__':
         for guild in client.guilds:
             for channel in guild.channels:
                 if channel.name == 'bot-configuration':
-                    run_bot()
-                    # await channel.send('hello world')
+
+                    output = run_bot()
+                    if output:
+                        await channel.send(output)
         await client.close()
         print('closing bot')
 
