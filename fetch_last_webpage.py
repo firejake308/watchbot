@@ -2,17 +2,21 @@ from db import mydb
 import json
 
 def fetch_last_webpage():
-  con = mydb.cursor()
-  res = con.execute("SELECT WebsiteText FROM HTMLFile")
+  cursor = mydb.cursor(buffered=True)
+  res = cursor.execute("SELECT WebsiteText FROM HTMLFile;")
+  rows = cursor.fetchall()
   result_string = ""
 
   # There should only be one. This is kinda hacky but oh well
-  if res is not None:
-    for r in res:
-        result_string = result_string + r
+  if rows is not None:
+    for r in rows:
+        result_string = result_string + r[0]
+  else:
+    raise Exception(f"Result string = {result_string}")
 
-  # Close the connection
-  con.close()
+  # Close the cursor
+  cursor.close()
+  print(result_string)
   return json.loads(result_string)
 
 
