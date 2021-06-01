@@ -6,7 +6,14 @@ import asyncio
 
 URL_TO_FETCH = 'https://www.bcm.edu/education/school-of-medicine/m-d-program/current-students/student-affairs/class-of-2025'
 
+def run_bot():
+    curr = fetch_current_webpage(URL_TO_FETCH)
+    prev = fetch_last_webpage()
+    save_new_version(curr)
+    mydb.close()
+
 if __name__ == '__main__':
+    run_bot()
     client = discord.Client()
 
     @client.event
@@ -16,10 +23,7 @@ if __name__ == '__main__':
         for guild in client.guilds:
             for channel in guild.channels:
                 if channel.name == 'bot-configuration':
-                    curr = fetch_current_webpage(URL_TO_FETCH)
-                    save_new_version(curr)
-                    prev = fetch_last_webpage()
-                    print(len(curr), len(prev))
+                    run_bot()
                     # await channel.send('hello world')
         await client.close()
         print('closing bot')
