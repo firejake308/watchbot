@@ -1,10 +1,19 @@
+from fetch_last_webpage import fetch_last_webpage, mydb, save_new_version
+from fetch_current_webpage import fetch_current_webpage
 import discord
 import os
 import asyncio
 
-# 'https://www.bcm.edu/education/school-of-medicine/m-d-program/current-students/student-affairs/class-of-2025'
+URL_TO_FETCH = 'https://www.bcm.edu/education/school-of-medicine/m-d-program/current-students/student-affairs/class-of-2025'
+
+def run_bot():
+    curr = fetch_current_webpage(URL_TO_FETCH)
+    prev = fetch_last_webpage()
+    save_new_version(curr)
+    mydb.close()
 
 if __name__ == '__main__':
+    run_bot()
     client = discord.Client()
 
     @client.event
@@ -14,8 +23,8 @@ if __name__ == '__main__':
         for guild in client.guilds:
             for channel in guild.channels:
                 if channel.name == 'bot-configuration':
-                    
-                    await channel.send('hello world')
+                    run_bot()
+                    # await channel.send('hello world')
         await client.close()
         print('closing bot')
 
@@ -26,7 +35,8 @@ if __name__ == '__main__':
         print('Detected KeyboardInterrupt, canceling remaining tasks')
         loop.run_until_complete(client.close())
         # cancel all tasks lingering
-    except discord.errors.Forbidden:
+    except Exception:
         loop.run_until_complete(client.close())
     finally:
         loop.close()
+        mydb.close()
