@@ -16,7 +16,6 @@ def run_bot():
     if web_comparison:
         output = generate_message(web_comparison,"BCM 2025")
     save_new_version(curr)
-    mydb.close()
     return output
 
 if __name__ == '__main__':
