@@ -16,19 +16,15 @@ def fetch_last_webpage():
 
   # Close the cursor
   cursor.close()
-  print(result_string)
   return json.loads(result_string)
 
 
 def save_new_version(json_formatted):
     con = mydb.cursor()
     json_string = json.dumps(json_formatted)
-    con.execute("UPDATE HTMLFile SET WebsiteText=%s WHERE ID=%s",  (json_string, 1))
+    res = con.execute("UPDATE HTMLFile SET WebsiteText=(%s) WHERE ID=1", (json_string,))
     mydb.commit()
     con.close()
-
-
-
 
 # for testing purposes
 if __name__ == "__main__":

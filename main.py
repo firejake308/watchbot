@@ -1,12 +1,26 @@
 from fetch_last_webpage import fetch_last_webpage, mydb, save_new_version
 from fetch_current_webpage import fetch_current_webpage
+from compare_webpages import compare_webpages
+from generate_message import generate_message
 import discord
 import os
 import asyncio
 
 URL_TO_FETCH = 'https://www.bcm.edu/education/school-of-medicine/m-d-program/current-students/student-affairs/class-of-2025'
 
+def run_bot():
+    curr = fetch_current_webpage(URL_TO_FETCH)
+    prev = fetch_last_webpage()
+    web_comparison = compare_webpages(curr,prev)
+    output = None
+    if web_comparison:
+        output = generate_message(web_comparison,"BCM 2025")
+    save_new_version(curr)
+    mydb.close()
+    return output
+
 if __name__ == '__main__':
+    run_bot()
     client = discord.Client()
 
     @client.event
@@ -16,11 +30,9 @@ if __name__ == '__main__':
         for guild in client.guilds:
             for channel in guild.channels:
                 if channel.name == 'bot-configuration':
-                    curr = fetch_current_webpage(URL_TO_FETCH)
-                    save_new_version(curr)
-                    prev = fetch_last_webpage()
-                    print(len(curr), len(prev))
-                    # await channel.send('hello world')
+                    output = run_bot()
+                    if output:
+                        await channel.send(output)
         await client.close()
         print('closing bot')
 
