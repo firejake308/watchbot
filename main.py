@@ -19,7 +19,6 @@ def run_bot():
     return output
 
 if __name__ == '__main__':
-    run_bot()
     client = discord.Client()
 
     @client.event
