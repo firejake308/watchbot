@@ -30,8 +30,8 @@ if __name__ == '__main__':
                 if channel.name == 'website-changes':
                     output = run_bot()
                     if output:
-                        print(output)
-                        # await channel.send(output)
+                        print('changes detected, sending message')
+                        await channel.send(output)
                     else:
                         print('No changes')
         await client.close()
