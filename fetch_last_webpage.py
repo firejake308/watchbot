@@ -20,6 +20,7 @@ def save_new_version(json_formatted):
     con = mydb.cursor()
     json_string = json.dumps(json_formatted)
     res = con.execute("UPDATE HTMLFile SET WebsiteText=%s WHERE ID=1" % (json_string))
+    con.commit()
     con.close()
 
 
