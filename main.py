@@ -5,6 +5,7 @@ from generate_message import generate_message
 import discord
 import os
 import asyncio
+import logging
 
 URL_TO_FETCH = 'http://www.bcm.edu/education/school-of-medicine/m-d-program/current-students/student-affairs/class-of-2025'
 
@@ -44,7 +45,7 @@ if __name__ == '__main__':
         loop.run_until_complete(client.close())
         # cancel all tasks lingering
     except Exception as e:
-        print(e)
+        logging.exception(e)
         loop.run_until_complete(client.close())
     finally:
         loop.close()
