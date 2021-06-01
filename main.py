@@ -33,6 +33,8 @@ if __name__ == '__main__':
                     output = run_bot()
                     if output:
                         await channel.send(output)
+                    else:
+                        print('No changes')
         await client.close()
         print('closing bot')
 
