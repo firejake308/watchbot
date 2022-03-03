@@ -28,4 +28,4 @@ def fetch_current_webpage(webpage):
 
 # for testing purposes
 if __name__ == "__main__":
-    print(fetch_current_webpage('http://www.bcm.edu/education/school-of-medicine/m-d-program/current-students/student-affairs/class-of-2025'))
+    print(fetch_current_webpage('http://www.bcm.edu/education/school-of-medicine/m-d-program/current-students/student-affairs/class-of-2026'))

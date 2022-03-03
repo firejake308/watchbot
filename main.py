@@ -7,7 +7,7 @@ import os
 import asyncio
 import logging
 
-URL_TO_FETCH = 'http://www.bcm.edu/education/school-of-medicine/m-d-program/current-students/student-affairs/class-of-2025'
+URL_TO_FETCH = 'http://www.bcm.edu/education/school-of-medicine/m-d-program/current-students/student-affairs/class-of-2026'
 
 def run_bot():
     curr = fetch_current_webpage(URL_TO_FETCH)
@@ -15,7 +15,7 @@ def run_bot():
     web_comparison = compare_webpages(prev,curr)
     output = None
     if web_comparison:
-        output = generate_message(web_comparison,"BCM 2025")
+        output = generate_message(web_comparison,"BCM 2026")
     save_new_version(curr)
     return output
 
@@ -30,6 +30,7 @@ if __name__ == '__main__':
                     output = run_bot()
                     if output:
                         print('changes detected, sending message')
+                        print(output) # FIXME
                         await channel.send(output)
                     else:
                         print('No changes')

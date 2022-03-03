@@ -9,7 +9,6 @@ def compare_webpages(list_string1, list_string2):
     striped_lines = [d["line"] for d in diff if d["code"] in VALID_CODES]
     changes = "\n".join(striped_lines)
 
-
     return changes
 
 
